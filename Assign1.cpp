@@ -10,27 +10,7 @@ const int COL = 4;
 int wall[ROW][COL];
 int score = 0;
 int highscore=0;
-void gameWall() {
-    srand(time(NULL));
-    int row1 = rand() % ROW;
-    int col1 = rand() % COL;
-    int row2 = rand() % ROW;
-    int col2 = rand() % COL;
-    int num1 = rand() % 2;
-    int num2 = rand() % 2;
-    if (num1 == 0){
-        wall[row1][col1] = 2;
-    }
-    else{
-        wall[row1][col1] = 4;
-    }
-    if (num2 == 0){
-        wall[row2][col2] = 4;
-    }
-    else{
-        wall[row2][col2] = 2;
-    }
-}
+
 void gameWall() {
     srand(time(NULL));
     int row1 = rand() % ROW;
@@ -69,6 +49,7 @@ void printWall() {
     }
     cout << "Score = " << score << endl;
 }
+
 bool checkGameOver() {
     for (int i = 0; i < ROW-1; i++) {
         for (int j = 0; j < COL-1; j++) {
@@ -146,6 +127,7 @@ void mDown() {
         }
     }
 }
+
 void mLeft() {
     for (int i = 0; i < ROW; i++) {
         int index = 0;
@@ -168,6 +150,7 @@ void mLeft() {
     }
 }
 
+void mRight() {
     for (int i = 0; i < ROW; i++) {
         int index = COL-1;
         for (int j = COL-1; j >= 0; j--) {
@@ -189,6 +172,7 @@ void mLeft() {
     }
 }
 
+
 int main() {
 	for(int a=0;a<ROW;a++){
 		for(int b=0;b<COL;b++){
@@ -196,4 +180,57 @@ int main() {
 			
 		}
 	}
-}
+	//int wall[ROW][COL] ={0};
+	int restart;
+    gameWall();
+    printWall();
+    
+    while (!checkGameOver()) {
+        char c = getch();
+    if (c == 227) {
+        c = getch(); 
+    }
+    
+    switch (c) {
+            case 72: 
+                mUp();
+                addRNum();
+                break;
+            case 80: 
+                mDown();
+                addRNum();
+                break;
+            case 75: 
+                mLeft();
+                addRNum();
+                break;
+            case 77: 
+                mRight();
+                addRNum();
+                break;
+            default:
+                cout << "Wrong input. Please try again with correct input." << endl;
+                break;
+        }
+        system("cls");
+        
+        printWall();
+    }
+    cout << "Ooops game is over!! your score: " << score << endl;
+    if (score > highscore) {
+        highscore = score;
+        cout << "New high score: " << highscore << endl;
+        
+			}
+			cout<<"Do you want to play again? Enter 1 for Yes or 2 for No."<<endl;
+	cin>>restart;
+	if (restart==1){
+		score=0;
+		system("cls");
+		
+		main();
+	}
+	else{
+		exit(0);
+	}
+    }
