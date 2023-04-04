@@ -189,4 +189,11 @@ void mLeft() {
     }
 }
 
-
+int main() {
+	for(int a=0;a<ROW;a++){
+		for(int b=0;b<COL;b++){
+			wall[a][b]=0;
+			
+		}
+	}
+}
