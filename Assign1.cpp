@@ -146,4 +146,25 @@ void mDown() {
         }
     }
 }
+void mLeft() {
+    for (int i = 0; i < ROW; i++) {
+        int index = 0;
+        for (int j = 0; j < COL; j++) {
+            if (wall[i][j] != 0) {
+                wall[i][index] = wall[i][j];
+                if (j != index) {
+                    wall[i][j] = 0;
+                }
+                index++;
+            }
+        }
+        for (int j = 0; j < COL-1; j++) {
+            if (wall[i][j] == wall[i][j+1]) {
+                wall[i][j] *= 2;
+                wall[i][j+1] = 0;
+                score += wall[i][j];
+            }
+        }
+    }
+}
 
