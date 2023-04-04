@@ -83,3 +83,22 @@ bool checkGameOver() {
     }
     return true;
 }
+
+void addRNum() {
+    bool added = false;
+    while (!added) {
+        int row = rand() % ROW;
+        int col = rand() % COL;
+        if (wall[row][col] == 0) {
+            int num = rand() % 2;
+            if (num == 0){
+                wall[row][col] = 2;
+            }
+            else{
+                wall[row][col] = 4;
+            }
+            added = true;
+        }
+    }
+}
+
