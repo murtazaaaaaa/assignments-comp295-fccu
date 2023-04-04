@@ -168,3 +168,25 @@ void mLeft() {
     }
 }
 
+    for (int i = 0; i < ROW; i++) {
+        int index = COL-1;
+        for (int j = COL-1; j >= 0; j--) {
+            if (wall[i][j] != 0) {
+                wall[i][index] = wall[i][j];
+                if (j != index) {
+                    wall[i][j] = 0;
+                }
+                index--;
+            }
+        }
+        for (int j = COL-1; j > 0; j--) {
+            if (wall[i][j] == wall[i][j-1]) {
+                wall[i][j] *= 2;
+                wall[i][j-1] = 0;
+                score += wall[i][j];
+            }
+        }
+    }
+}
+
+
