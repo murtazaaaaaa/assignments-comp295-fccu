@@ -69,4 +69,17 @@ void printWall() {
     }
     cout << "Score = " << score << endl;
 }
-
+bool checkGameOver() {
+    for (int i = 0; i < ROW-1; i++) {
+        for (int j = 0; j < COL-1; j++) {
+            if (wall[i][j] == 0|| wall[i][j+1] == 0) {
+                return false;
+            }
+            if (wall[i][j] == wall[i+1][j])
+                return false;
+            if (wall[i][j] == wall[i][j+1])
+                return false;
+        }
+    }
+    return true;
+}
