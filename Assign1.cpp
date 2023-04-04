@@ -102,3 +102,48 @@ void addRNum() {
     }
 }
 
+void mUp() {
+    for (int j = 0; j < COL; j++) {
+        int index = 0;
+        for (int i = 0; i < ROW; i++) {
+            if (wall[i][j] != 0) {
+                wall[index][j] = wall[i][j];
+                if (i != index) {
+                    wall[i][j] = 0;
+                }
+                index++;
+            }
+        }
+        for (int i = 0; i < ROW-1; i++) {
+            if (wall[i][j] == wall[i+1][j]) {
+                wall[i][j] *= 2;
+                wall[i+1][j] = 0;
+                score += wall[i][j];
+            }
+        }
+    }
+    
+}
+
+void mDown() {
+    for (int j = 0; j < COL; j++) {
+        int index = ROW-1;
+        for (int i = ROW-1; i >= 0; i--) {
+            if (wall[i][j] != 0) {
+                wall[index][j] = wall[i][j];
+                if (i != index) {
+                    wall[i][j] = 0;
+                }
+                index--;
+            }
+        }
+        for (int i = ROW-1; i > 0; i--) {
+            if (wall[i][j] == wall[i-1][j]) {
+                wall[i][j] *= 2;
+                wall[i-1][j] = 0;
+                score += wall[i][j];
+            }
+        }
+    }
+}
+
